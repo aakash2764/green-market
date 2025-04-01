@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenMarket - Sustainable Products</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        /* General Black Theme */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000; /* Pure black background */
+    color: #fff; /* White text for readability */
+    overflow-x: hidden;
+}
+.cart-sidebar{
+    color:#1a1a1a;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #1a1a1a; /* Dark gray background for navbar */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2); /* Soft white shadow */
+}
+.nav-links li a {
+    text-decoration: none;
+    color: #fff; /* White text for links */
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.nav-links li a:hover {
+    color: #66cdaa; /* Light green hover effect */
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #000; /* Black background */
+}
+.hero h1, .hero p, .cta-button {
+    color: #fff; /* White text */
+}
+.searchbar {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blurred background */
+    color: #fff; /* White text */
+}
+.searchbar input::placeholder {
+    color: #ccc; /* Light gray placeholder text */
+}
+.searchbar button {
+    background: #66cdaa; /* Light green background */
+    border: none;
+    color: #fff; /* White text */
+}
+.searchbar button:hover {
+    background: #58b793; /* Darker green hover effect */
+}
+
+/* Today's Deals Section */
+/* General Section Styling */
+.todays-deals {
+    text-align: center;
+    color: #e6e6e6;
+    background: #050505; /* Black background */
+    padding: 50px 0;
+    overflow: hidden; /* Ensures no overflow outside the container */
+}
+
+.todays-deals h2 {
+    color: #66cdaa; /* Light green header color */
+    margin-bottom: 60px;
+}
+
+/* Carousel Container */
+/* Carousel Section Styling */
+.carousel {
+    position: relative;
+    width: 100%; /* Adjusts the width of the carousel */
+    height: 500px; /* Fixed height */
+    margin: 0 auto; /* Horizontally centers the carousel */
+    perspective: 1000px; /* 3D perspective */
+    display: flex; /* Flexbox to center-align */
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+}
+
+/* Carousel Items */
+.carousel-item {
+    position: absolute;
+    width: 100%; /* Adjusted to fit the container */
+    height: 100%; /* Ensures the height matches the container */
+    background-size: contain; /* Ensures the entire image fits without cropping */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.carousel-item img {
+    width: 100%; /* Ensures the image adjusts to the width of the container */
+    height: auto; /* Maintains the aspect ratio */
+    object-fit: cover; /* Ensures the image doesn't stretch */
+    border-radius: 10px;
+}
+
+
+/* Active Item (Displayed prominently in the center) */
+.carousel-item.active {
+    opacity: 1;
+    transform: scale(1) translateZ(200px); /* Enlarges and brings item forward */
+    z-index: 2; /* Ensures it stays above others */
+}
+
+/* Left and Right Items (Smaller and faded) */
+.carousel-item.left {
+    opacity: 0.6; /* Slightly transparent */
+    transform: scale(0.8) translateX(-150px) rotateY(30deg); /* Rotates left */
+    z-index: 1; /* Places it behind the active item */
+}
+
+.carousel-item.right {
+    opacity: 0.6; /* Slightly transparent */
+    transform: scale(0.8) translateX(150px) rotateY(-30deg); /* Rotates right */
+    z-index: 1; /* Places it behind the active item */
+}
+
+
+/* Game Corner */
+.game-corner {
+    background: #1a1a1a; /* Dark gray background */
+    color: #fff; /* White text */
+}
+.leaderboard {
+    background: #333; /* Darker gray background */
+    color: #fff; /* White text */
+}
+.leaderboard li:before {
+    color: #ffd700; /* Gold color for the trophy icon */
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a; /* Dark gray background */
+    color: #fff; /* White text */
+}
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: none;
+        }
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .hero h1, .hero p, .hero .cta-button {
+            margin: 20px;
+            z-index: 1;
+            color: white; /* Ensure text is visible over the video */
+        }
+        .searchbar {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Blurred background */
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1;
+        }
+        .searchbar input {
+            flex: 1;
+            border: none;
+            background: none;
+            color: white;
+            font-size: 1.2em;
+            outline: none;
+            padding: 5px;
+        }
+        .searchbar input::placeholder {
+            color: white;
+        }
+        .searchbar button {
+            background: #66cdaa;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .searchbar button:hover {
+            background: #58b793;
+        }
+
+        /* Today's Deals Section */
+        .todays-deals {
+    margin: 30px auto;
+    padding: 20px;
+    background: #000000; /* Dark gray background for better contrast */
+    border-radius: 15px;
+    color: #e6e6e6; /* Light gray text for visibility */
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
+}
+
+.deals-container {
+    display: flex;
+    gap: 20px;
+    animation: scrollDeals 20s linear infinite;
+}
+
+.deal-card {
+    min-width: 250px;
+    background: #000000; /* Slightly darker gray for the deal cards */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    font-size: 1rem;
+    text-align: center;
+    color: #e6e6e6; /* Light gray text for better readability */
+}
+
+.deal-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #66cdaa; /* Light green border for consistent accents */
+}
+
+@keyframes scrollDeals {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+        .game-corner {
+    background: #66cdaa; /* Light green background */
+    padding: 50px 20px; /* Space inside the section */
+    margin: 0; /* Remove any margin to ensure full width */
+    border-radius: 0; /* Remove border radius for consistent page coverage */
+    width: 100vw; /* Full viewport width */
+    min-height: 100vh; /* Full viewport height */
+    box-shadow: none; /* Remove any shadow if applied */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+        .game-preview {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px; /* Rounded corners */
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for the preview image */
+        }
+        .game-preview img {
+            width: 100%; /* Stretch to fit the container */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .leaderboard {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            background: #228b22;
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .leaderboard h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .leaderboard ul {
+            list-style: none;
+            padding: 0;
+        }
+        .leaderboard li {
+            font-size: 1.2em;
+            margin: 10px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .leaderboard li:before {
+            content: "🏆";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+
+        /* Footer */
+        .footer {
+            background: #228b22;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .deal-card {
+    min-width: 250px;
+    background: #66cdaa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    text-align: center;
+    color: white;
+}
+
+.deal-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.deals-container {
+    display: flex;
+    gap: 20px;
+    animation: scrollDeals 20s linear infinite;
+}
+
+@keyframes scrollDeals {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+/* General Text Color for How It Works and Why Choose Us Sections */
+/* General Styling for Sections */
+.how-it-works, .why-choose-us, .testimonials {
+    background: #1a1a1a; /* Dark gray background for contrast with text */
+    padding: 30px; /* Space inside the sections */
+    border-radius: 15px; /* Rounded corners for aesthetic appeal */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle white shadow */
+    color: #e6e6e6; /* Light gray text for visibility */
+}
+
+.how-it-works h2, .why-choose-us h2, .testimonials h2 {
+    color: #66cdaa; /* Light green headers for consistency */
+    margin-bottom: 20px; /* Space below headings */
+}
+
+.steps .step h3, .reasons .reason h3, .testimonial-grid .testimonial h3 {
+    color: #fff; /* White text for subheadings */
+}
+
+.steps .step p, .reasons .reason p, .testimonial-grid .testimonial p {
+    color: #cccccc; /* Slightly darker gray for descriptive text */
+}
+
+/* Individual Cards in Sections */
+.steps .step, .reasons .reason, .testimonial-grid .testimonial {
+    background: #333; /* Dark gray background for individual cards */
+    border-radius: 10px; /* Rounded corners for cards */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    text-align: center; /* Center-align text */
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>GreenMarket</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+        <div class="cart-icon" id="cartIcon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <video autoplay loop muted>
+            <source src="products.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="searchbar">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton">Go</button>
+        </div>
+        <h1>Welcome to GreenMarket</h1>
+        <p>Your destination for sustainable and eco-friendly products</p>
+        <a href="products.html" class="cta-button button">Shop Now</a>
+    </div>
+   
+    
+    
+
+    <section class="featured-products" data-aos="fade-up">
+        <h2>Featured Products</h2>
+        <div class="products-grid card" id="featuredProducts"></div>
+    </section>
+    <section class="how-it-works" data-aos="fade-up">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step card">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Step 1</h3>
+                <p>Choose your sustainable products.</p>
+            </div>
+            <div class="step card">
+                <i class="fas fa-box"></i>
+                <h3>Step 2</h3>
+                <p>Get them delivered to your doorstep.</p>
+            </div>
+            <div class="step card">
+                <i class="fas fa-seedling"></i>
+                <h3>Step 3</h3>
+                <p>Enjoy eco-friendly living.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose-us" data-aos="fade-up">
+        <h2>Why Choose Us</h2>
+        <div class="reasons">
+            <div class="reason card">
+                <i class="fas fa-leaf"></i>
+                <h3>Eco-Friendly</h3>
+                <p>All products are made from sustainable materials.</p>
+            </div>
+            <div class="reason card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Community Support</h3>
+                <p>We support local communities and small businesses.</p>
+            </div>
+            <div class="reason card">
+                <i class="fas fa-recycle"></i>
+                <h3>Recyclable Packaging</h3>
+                <p>Our packaging is 100% recyclable.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" data-aos="fade-up">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial card">
+                <p>"GreenMarket has the best eco-friendly products. Highly recommend!"</p>
+                <h3>- Jane Doe</h3>
+            </div>
+            <div class="testimonial card">
+                <p>"Their sustainable products have made my life so much easier."</p>
+                <h3>- John Smith</h3>
+            </div>
+            <div class="testimonial card">
+                <p>"Fantastic products and great customer service. Love it!"</p>
+                <h3>- Sarah Lee</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="game-corner" data-aos="fade-up">
+        <div class="animated-background"></div>
+        <h2>Game Corner</h2>
+        <div class="game-preview" data-aos="zoom-in">
+            <img src="turtle.gif" alt="Game Preview">
+        </div>
+        <p data-aos="fade-up">Explore our fun and engaging games!</p>
+        <a href="game.html" class="cta-button" data-aos="fade-up">Play Now</a>
+        <div class="leaderboard" data-aos="fade-up" data-aos-delay="200">
+            <h3>Leaderboard</h3>
+            <ul>
+                <li class="fade-in">1. Player A - 1500 points</li>
+                <li class="fade-in">2. Player B - 1200 points</li>
+                <li class="fade-in">3. Player C - 900 points</li>
+                <li class="fade-in">4. Player D - 800 points</li>
+                <li class="fade-in">5. Player E - 700 points</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="footer" data-aos="fade-up">
+        <p>&copy; 2025 GreenMarket. All rights reserved.</p>
+    </footer>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be populated by JavaScript -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                Total: ₹<span id="cartTotal">0.00</span>
+            </div>
+            <button class="checkout-button button" id="checkoutButton">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".carousel-item");
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        items.forEach((item, index) => {
+            item.classList.remove("active", "left", "right");
+
+            if (index === currentIndex) {
+                item.classList.add("active");
+            } else if (index === (currentIndex - 1 + items.length) % items.length) {
+                item.classList.add("left");
+            } else if (index === (currentIndex + 1) % items.length) {
+                item.classList.add("right");
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+    }
+
+    // Automatically move to the next slide every 3 seconds
+    setInterval(nextSlide, 3000);
+
+    // Initialize the carousel
+    updateCarousel();
+});
+
+
+        AOS.init();
+
+        // JavaScript to handle the search bar functionality
+        document.getElementById("searchButton").addEventListener("click", function () {
+            const searchQuery = document.getElementById("searchInput").value.trim();
+            if (searchQuery) {
+                alert(`You searched for: ${searchQuery}`);
+                // Example: Redirect to a search results page
+                // window.location.href = `search.html?query=${encodeURIComponent(searchQuery)}`;
+            } else {
+                alert("Please enter a search query!");
+            }
+        });
+
+        // JavaScript for cart functionality
+        document.getElementById("cartIcon").addEventListener("click", function () {
+            document.getElementById("cartSidebar").style.display = "block";
+        });
+
+        document.getElementById("closeCart").addEventListener("click", function () {
+            document.getElementById("cartSidebar").style.display = "none";
+        });
+
+        document.getElementById("checkoutButton").addEventListener("click", function () {
+            alert("Proceeding to checkout!");
+        });
+    </script>
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

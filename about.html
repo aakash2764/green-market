@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - GreenMarket</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>GreenMarket</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+        <div class="cart-icon" id="cartIcon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </nav>
+
+    <div class="about-container">
+        <section class="mission">
+            <h1>Our Mission</h1>
+            <p>At GreenMarket, we're committed to making sustainable living accessible to everyone. Our platform connects conscious consumers with eco-friendly products that make a positive impact on our planet.</p>
+        </section>
+
+        <section class="values">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability</h3>
+                    <p>Every product is carefully selected to meet our strict environmental standards.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-recycle"></i>
+                    <h3>Zero Waste</h3>
+                    <p>We prioritize products with minimal packaging and recyclable materials.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Community</h3>
+                    <p>Supporting local artisans and sustainable businesses worldwide.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be populated by JavaScript -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                Total: ₹<span id="cartTotal">0.00</span>
+            </div>
+            <button class="checkout-button" id="checkoutButton">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

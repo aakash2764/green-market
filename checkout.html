@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - GreenMarket</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+            <span>GreenMarket</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <div class="checkout-container">
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="checkoutItems">
+                <!-- Checkout items will be populated by JavaScript -->
+            </div>
+            <div class="total-section">
+                <div class="subtotal">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">₹0.00</span>
+                </div>
+                <div class="shipping">
+                    <span>Shipping:</span>
+                    <span id="shipping">₹5.00</span>
+                </div>
+                <div class="total">
+                    <span>Total:</span>
+                    <span id="total">₹0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-section">
+            <h2>Payment Method</h2>
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" id="upi" name="payment" value="upi">
+                    <label for="upi">
+                        <i class="fas fa-mobile-alt"></i>
+                        UPI Payment
+                    </label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="card" name="payment" value="card">
+                    <label for="card">
+                        <i class="fas fa-credit-card"></i>
+                        Card Payment
+                    </label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="cod" name="payment" value="cod">
+                    <label for="cod">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Pay on Delivery
+                    </label>
+                </div>
+            </div>
+
+            <div class="payment-details" id="paymentDetails">
+                <!-- Payment form will be dynamically shown based on selection -->
+            </div>
+
+            <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>
