@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://greenuser:greenpass@localhost/greenmarket'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:SrrzDuvQnUWTCXTktfiavQxqakiluWzh@tramway.proxy.rlwy.net:38504/railway'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
