@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cart = JSON.parse(localStorage.getItem('cart') || '[]');
                 const paymentInfo = getPaymentInfo(selectedPayment.value);
                 
-                const response = await fetch('http://localhost:5000/api/checkout', {
+                const response = await fetch('https://green-market-9tq6.onrender.com/api/checkout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -184,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         paymentInfo: paymentInfo
                     })
                 });
+                
 
                 if (!response.ok) {
                     const error = await response.json();

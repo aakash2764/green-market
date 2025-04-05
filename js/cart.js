@@ -16,7 +16,7 @@ async function loadCart() {
 // Fetch product data including stock from API
 async function fetchProductData(productId) {
     try {
-        const response = await fetch(`http://localhost:5000/api/products/${productId}`);
+        const response = await fetch(`https://green-market-9tq6.onrender.com/api/products/${productId}`);
         if (!response.ok) throw new Error('Product not found');
         return await response.json();
     } catch (error) {
