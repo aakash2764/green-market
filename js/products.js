@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== NEW: Fetch products from API =====
     async function fetchProducts() {
         try {
-            const response = await fetch(`fetch('https://green-market-9tq6.onrender.com/api/products')?timestamp=${new Date().getTime()}`);
+            const response = await fetch(`https://green-market-9tq6.onrender.com/api/products?timestamp=${Date.now()}`);
             if (!response.ok) throw new Error('Network response was not ok');
             return await response.json();
         } catch (error) {
